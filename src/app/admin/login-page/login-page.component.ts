@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {User} from "../shared/interfaces";
 
 @Component({
     selector: 'app-login-page',
@@ -21,14 +22,19 @@ export class LoginPageComponent implements OnInit {
             ]),
             password: new FormControl(null, [
                 Validators.required,
-                Validators.minLength(8)
+                Validators.minLength(6)
             ])
         })
     }
 
   submit() {
     if (this.form.invalid) {
-      return
+        return
+    }
+
+    const user : User = {
+        email: this.form.value.email,
+        password: this.form.value.password
     }
   }
 }
